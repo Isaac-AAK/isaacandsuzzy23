@@ -101,13 +101,13 @@
                             </div>
                             <div class="bottom-caption">
                                 <span>11:00AM</span>
-                                <p>993 Mediterranean Ave <br> Columbus, Ohio</p>
+                                <p><a  href="https://www.google.com/maps/place/993+Mediterranean+Ave,+Columbus,+OH+43229/@40.0903171,-82.9928004,17z/data=!3m1!4b1!4m6!3m5!1s0x88388b565eb99313:0x824f092d78505a9b!8m2!3d40.0903171!4d-82.9906117!16s%2Fg%2F11cskd64xw" style="color: black;">993 Mediterranean Ave </a><br> Columbus, Ohio</p>
                             </div>
                         </div> 
                     </div><div class="col-lg-4">
                         <div class="singl-services text-center mb-60">
                             <div class="top-caption">
-                                <h4>The Ceremony</h4>
+                                <h4>White Wedding</h4>
                                 <p>September 2, 2023</p>
                             </div>
                             <div class="services-img">
@@ -122,7 +122,7 @@
                     </div><div class="col-lg-4">
                         <div class="singl-services text-center mb-60">
                             <div class="top-caption">
-                                <h4>Afterparty</h4>
+                                <h4>Reception</h4>
                                 <p>September 2, 2023</p>
                             </div>
                             <div class="services-img">
@@ -228,7 +228,7 @@
                     <div class=" offset-lg-1 col-12">
                         <div class="gift-caption">
                             <h2>The Best Gift</h2>
-                            <p>Will be your bresentation</p>
+                            <p>Will be your present</p>
                             <a href="#rsvp" class="btn">R.S.V.P</a>
                         </div>
                     </div>
@@ -258,17 +258,18 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-box mb-30">
-                                            <input type="text"  th:field="*{name}" placeholder="Name">
+                                            <input type="text"  th:field="*{name}" placeholder="Name" required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-box subject-icon mb-30">
-                                            <input type="email"   th:field="*{contact}" placeholder="Email" >
+                                            <input type="email"   th:field="*{contact}" placeholder="Email" required="required" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-30">
                                         <div class="select-itms">
                                             <select name="select" id="select2" th:field="*{numberOfGuest}">
+                                            	<option value="0">No Guest</option>                                           			
                                                 <option value="1">1 Guest</option>
                                                 <option value="2">2 Guest</option>
                                                 <option value="3">3 Guest</option>
@@ -387,7 +388,7 @@
    
 	<!-- JS here -->
 	
-		<!-- All JS Custom Plugins Link Here here -->
+		<!-- All JS Custom Plugins Link Here here --> 
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
 		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
