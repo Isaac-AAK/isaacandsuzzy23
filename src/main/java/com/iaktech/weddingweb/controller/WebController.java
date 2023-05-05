@@ -1,6 +1,6 @@
 package com.iaktech.weddingweb.controller;
 
-import java.util.regex.Pattern;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.iaktech.weddingweb.model.Rsvp;
 import com.iaktech.weddingweb.service.Notification;
 import com.iaktech.weddingweb.service.RsvpService;
+
+import jakarta.mail.MessagingException;
+
 
 
 @Controller
@@ -38,8 +41,12 @@ public class WebController {
 	}
 	
 	@PostMapping("/save")
-	public String  addRsvp(@ModelAttribute Rsvp addRsvp, Model model) {
-		notification.messageTemplate(addRsvp.getContact());
+	public String  addRsvp(@ModelAttribute Rsvp addRsvp, Model model) throws MessagingException{
+	String name=	addRsvp.getName();
+	String email=	addRsvp.getContact();
+		addRsvp.getNumberOfGuest();
+		notification.notificationTemplate(email,name);
+		
 		rsvpService.addRsvp(addRsvp);
 		model.addAttribute("rsvpForm", new Rsvp());
 		
