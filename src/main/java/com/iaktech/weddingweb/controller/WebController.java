@@ -5,7 +5,7 @@ package com.iaktech.weddingweb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,16 +41,21 @@ public class WebController {
 	}
 	
 	@PostMapping("/save")
-	public String  addRsvp(@ModelAttribute Rsvp addRsvp, Model model) throws MessagingException{
-	String name=	addRsvp.getName();
-	String email=	addRsvp.getContact();
+	public String  addRsvp(@ModelAttribute Rsvp addRsvp, BindingResult result, Model model) throws MessagingException{
+	
+		
+		String name=	addRsvp.getName();
+		String email=	addRsvp.getContact();
 		addRsvp.getNumberOfGuest();
-		notification.notificationTemplate(email,name);
-		
 		rsvpService.addRsvp(addRsvp);
-		model.addAttribute("rsvpForm", new Rsvp());
 		
-		return "redirect:/";
+		
+		model.addAttribute("rsvpForm", new Rsvp());
+		if(notification.notificationTemplate(email,name)) {
+			return "redirect:/";
+		}
+		
+		return "redirect:/rsvp";
 		
 	}
 	

@@ -32,8 +32,9 @@ public class Notification {
 //		
 //	}
 	
-	public void notificationTemplate(String email, String name ) throws MessagingException {
- 		String from = "donotreply@gmail.com";
+	public boolean notificationTemplate(String email, String name ) throws MessagingException {
+ 		
+		String from = "donotreply@gmail.com";
 		 
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -52,6 +53,8 @@ public class Notification {
 				+ "Isaac & Suzzy</i>", html);
 
 		mailSender.send(message);
+		
+		return true;
 	}
 	  
 }
