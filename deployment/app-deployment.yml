@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-deployment
+  labels:
+    app: wedding
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: wedding
+  template:
+    metadata:
+      labels:
+        app: wedding
+    spec:
+      containers:
+        - name: 
+          image: iaktech/
+          ports:
+            - containerPort: 8080
+          
