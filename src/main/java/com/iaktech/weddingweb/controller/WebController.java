@@ -2,6 +2,9 @@ package com.iaktech.weddingweb.controller;
 
 
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +29,9 @@ public class WebController {
 	
 	@Autowired
 	private Notification notification;
-	
-	
+
+	private String name;
+	private String email;
 	@RequestMapping(value = "/")
 	public String homePage(Model model) {
 		model.addAttribute("rsvpForm", new Rsvp());
@@ -40,34 +44,21 @@ public class WebController {
 		return "booking";
 	}
 	
-	@PostMapping("/save")
-	public String  addRsvp(@ModelAttribute Rsvp addRsvp, BindingResult result, Model model) throws MessagingException{
-	
-		
-		String name=	addRsvp.getName();
-		String email=	addRsvp.getContact();
-		addRsvp.getNumberOfGuest();
-		rsvpService.addRsvp(addRsvp);
-		
-		
-		model.addAttribute("rsvpForm", new Rsvp());
-		if(notification.notificationTemplate(email,name)) {
-			return "redirect:/";
+	@PostMapping("/rsvp-form")
+	public String  addRsvp(@Valid @ModelAttribute("rsvpForm") Rsvp addRsvp, BindingResult result) throws MessagingException {
+		if (result.hasErrors()) {
+			return "booking";
 		}
-		
+
+		 name=	addRsvp.getName();
+		 email=	addRsvp.getContact();
+        boolean checkName =name.matches("^[A-Za-z]+([\\ A-Za-z]+)*");
+			if (checkName){
+				addRsvp.getNumberOfGuest();
+				rsvpService.addRsvp(addRsvp);
+				notification.notificationTemplate(email,name);
+				return "redirect:/";
+			}
 		return "redirect:/rsvp";
-		
 	}
-	
-	/**
-	 * TODO
-	 * Page title
-	 * hyperlink for address
-	 * pop up to the rsvp
-	 * email to attendance
-	 * list of rsvp
-	 * 
-	 * 
-	 */
-	
 }
