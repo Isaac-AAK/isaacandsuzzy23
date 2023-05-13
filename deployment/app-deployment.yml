@@ -15,8 +15,8 @@ spec:
         app: wedding
     spec:
       containers:
-        - name: 
-          image: iaktech/
+        - name: wedding
+          image: iaktech/wedding:latest
           ports:
             - containerPort: 8080
           

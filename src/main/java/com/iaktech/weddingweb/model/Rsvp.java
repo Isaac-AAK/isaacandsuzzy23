@@ -1,14 +1,10 @@
 package com.iaktech.weddingweb.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @Setter
@@ -20,9 +16,11 @@ public class Rsvp {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	@Size(min = 2, max = 250,message ="Please enter your full name" )
 	private String name;
-	
+	@NotEmpty(message = "User's email cannot be empty.")
+	@Email(message = "Please enter a valid e-mail address")
 	private String contact;
 	
 	private int numberOfGuest;
