@@ -3,7 +3,7 @@ package com.iaktech.weddingweb.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @AllArgsConstructor
@@ -28,6 +28,9 @@ public class Rsvp {
 	@Size(min = 0, max = 200, message 
 		      = "Message must be not above 200 characters")
 	private String message;
+	
+	@NotNull(message="Enter Code")
+	private String rsvpCode;
 	
 
 }
