@@ -28,8 +28,8 @@ public class Rsvp {
 	@Size(min = 0, max = 200, message 
 		      = "Message must be not above 200 characters")
 	private String message;
-	
-	@NotNull(message="Enter Code")
+
+	@NotEmpty(message = "Enter code")
 	private String rsvpCode;
 	
 

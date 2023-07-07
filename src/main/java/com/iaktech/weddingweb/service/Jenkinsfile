@@ -1,0 +1,26 @@
+pipeline {
+    agent {
+        node {
+            label 'docker-agent-alpine'
+            }
+      }
+    tools{
+        maven 'Maven 3.93'
+    }
+    stages{
+        stage('Build Maven'){
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Isaac-AAK/isaacandsuzzy23']]])
+                sh 'mvn clean install -DskipTests=true'
+            }
+        }
+        stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t iaktech/wedding-web-0.0.1 .'
+                }
+            }
+        }
+
+    }
+}
